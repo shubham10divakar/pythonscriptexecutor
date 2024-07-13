@@ -54,7 +54,7 @@ public class PythonScriptExecutor {
         return output;
     }
 
-    public String executeCoreLogicWithArgs(String scriptPath, String... arguments) throws IOException, InterruptedException {
+    private String executeCoreLogicWithArgs(String scriptPath, String... arguments) throws IOException, InterruptedException {
         validateFilePath(scriptPath);
 
         // Determine the Python executable based on the operating system
