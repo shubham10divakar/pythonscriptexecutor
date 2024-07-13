@@ -27,9 +27,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/56duong/calculator.git</connection>
-        <developerConnection>scm:git:ssh://github.com:56duong/calculator.git</developerConnection>
-        <url>http://github.com/56duong/calculator/tree/master</url>
+        <connection>scm:git:git://github.com/shubham10divakar/pythonscriptexecutor.git</connection>
+        <developerConnection>scm:git:ssh://shubham10divakar/pythonscriptexecutor.git</developerConnection>
+        <url>http://github.com/shubham10divakar/pythonscriptexecutor/tree/main</url>
     </scm>
 
     <properties>

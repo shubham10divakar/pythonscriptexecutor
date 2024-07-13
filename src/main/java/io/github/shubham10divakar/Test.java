@@ -7,9 +7,11 @@ public class Test {
             PythonScriptExecutor obj = new PythonScriptExecutor();
             //display(obj.executePythonScriptNoArgs("C:\\D\\my docs\\my docs\\projects\\springbootnetworkproject\\PythonScriptExecutor\\test_python_script.py", true, Level.INFO));
             //display(obj.executePythonScriptWithArgs("C:\\D\\my docs\\my docs\\projects\\springbootnetworkproject\\PythonScriptExecutor\\test_python_script.py", "From Subham"));
-        //display(obj.executePythonScriptWithArgs("C:\\D\\my docs\\my docs\\projects\\springbootnetworkproject\\PythonScriptExecutor\\nmap_scan.py", true, Level.WARNING,"google.com"));
+        //display(obj.executePythonScriptWithArgs("C:\\D\\my docs\\my docs\\projects\\springbootnetworkproject\\PythonScriptExecutor\\nmap_scan.py", true, Level.WARNING,"google.com", "-sV --script ssl-enum-ciphers"));
         //display(obj.executePythonScriptWithArgs("C:\\D\\my docs\\my docs\\projects\\springbootnetworkproject\\PythonScriptExecutor\\read_csv_data.py", true, Level.WARNING,"C:\\D\\my docs\\my docs\\projects\\springbootnetworkproject\\PythonScriptExecutor\\Airplane_Crashes_and_Fatalities_Since_1908.csv"));
-        String obj1 = obj.executePythonScriptWithArgs("C:\\D\\my docs\\my docs\\projects\\springbootnetworkproject\\PythonScriptExecutor\\read_csv_data.py", true, Level.SEVERE,"C:\\D\\my docs\\my docs\\projects\\springbootnetworkproject\\PythonScriptExecutor\\Airplane_Crashes_and_Fatalities_Since_1908.csv");
+
+        //For fetching csv data from python file
+        //String obj1 = obj.executePythonScriptWithArgs("C:\\D\\my docs\\my docs\\projects\\springbootnetworkproject\\PythonScriptExecutor\\read_csv_data.py", true, Level.SEVERE,"C:\\D\\my docs\\my docs\\projects\\springbootnetworkproject\\PythonScriptExecutor\\Airplane_Crashes_and_Fatalities_Since_1908.csv");
         //display(obj1);
     }
 
