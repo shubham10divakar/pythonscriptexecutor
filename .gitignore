@@ -4,8 +4,10 @@ __pycache__/
 *.pyc
 *.cpython-39.pyc
 
-Test.java
-Test.class
+#Test.java
+src/main/java/io/github/shubham10divakar/Test.java
+#Test.class
+target/classes/io/github/shubham10divakar/Test.class
 
 #cert files
 *.crt

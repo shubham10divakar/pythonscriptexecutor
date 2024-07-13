@@ -10,7 +10,7 @@ public class Test {
         //display(obj.executePythonScriptWithArgs("C:\\D\\my docs\\my docs\\projects\\springbootnetworkproject\\PythonScriptExecutor\\nmap_scan.py", true, Level.WARNING,"google.com", "-sV --script ssl-enum-ciphers"));
         //display(obj.executePythonScriptWithArgs("C:\\D\\my docs\\my docs\\projects\\springbootnetworkproject\\PythonScriptExecutor\\read_csv_data.py", true, Level.WARNING,"C:\\D\\my docs\\my docs\\projects\\springbootnetworkproject\\PythonScriptExecutor\\Airplane_Crashes_and_Fatalities_Since_1908.csv"));
 
-        //For fetching csv data from python file
+        //For fetching csv data from python fileasdsadasd
         //String obj1 = obj.executePythonScriptWithArgs("C:\\D\\my docs\\my docs\\projects\\springbootnetworkproject\\PythonScriptExecutor\\read_csv_data.py", true, Level.SEVERE,"C:\\D\\my docs\\my docs\\projects\\springbootnetworkproject\\PythonScriptExecutor\\Airplane_Crashes_and_Fatalities_Since_1908.csv");
         //display(obj1);
     }
