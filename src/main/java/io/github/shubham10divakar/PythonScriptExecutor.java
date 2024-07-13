@@ -1,14 +1,20 @@
 package io.github.shubham10divakar;
 
 import io.github.shubham10divakar.CustomException.IncorrectFileExtensionException;
+import io.github.shubham10divakar.Logger.Logger;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
 
 public class PythonScriptExecutor {
-    public String executePythonScriptNoArgs(String scriptPath) {
+
+    public String executePythonScriptNoArgs(String scriptPath, boolean loggingState, Level loggLevel) {
+
+        Logger.setLoggingEnabled(loggingState);
+        Logger.setLogLevel(loggLevel);
 
         String output = null;
         try {
@@ -36,7 +42,10 @@ public class PythonScriptExecutor {
      * @throws IOException          if an I/O error occurs
      * @throws InterruptedException if the process is interrupted
      */
-    public String executePythonScriptWithArgs(String scriptPath, String... arguments) {
+    public String executePythonScriptWithArgs(String scriptPath, boolean loggingState, Level loggLevel,String... arguments) {
+        Logger.setLoggingEnabled(loggingState);
+        Logger.setLogLevel(loggLevel);
+
         String output = null;
         try {
             output = executeCoreLogicWithArgs(scriptPath, arguments);
@@ -68,6 +77,10 @@ public class PythonScriptExecutor {
         processBuilder.redirectErrorStream(true);
         Process process = processBuilder.start();
 
+        if(Logger.isLoggingEnabled()){
+            Logger.log(Level.INFO,"Execution is in Progress......");
+        }
+
         // Read the output of the script
         StringBuilder output = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
@@ -77,8 +90,13 @@ public class PythonScriptExecutor {
             }
         }
 
+        //System.out.println("Execution is in Progress......");
         // Wait for the process to complete and get the exit code
         int exitCode = process.waitFor();
+        if(Logger.isLoggingEnabled()){
+            Logger.log(Level.INFO,"Execution is Completed......");
+        }
+        //System.out.println("Execution is Completed......");
 
         // Check if the script execution was successful
         if (exitCode != 0) {
@@ -90,12 +108,20 @@ public class PythonScriptExecutor {
 
     private String executeCoreLogicNoArgs(String scriptPath) throws IOException, InterruptedException {
         //String scriptPath = "src/main/resources/pythonscript/nmap_scan.py"; // Adjust the path as needed
-
         File scriptFile = validateFilePath(scriptPath);
 
-        System.out.println("Using Python script at: " + scriptFile.getAbsolutePath());
+        // Determine the Python executable based on the operating system
+        String pythonExecutable = getPythonExecutable();
 
-        ProcessBuilder processBuilder = new ProcessBuilder("python", scriptFile.getAbsolutePath());
+        if(Logger.isLoggingEnabled()){
+            Logger.log(Level.INFO,"Using Python script at: " + scriptFile.getAbsolutePath());
+        }
+        //System.out.println("Using Python script at: " + scriptFile.getAbsolutePath());
+
+        if(Logger.isLoggingEnabled()){
+            Logger.log(Level.INFO,"Execution is in Progress......");
+        }
+        ProcessBuilder processBuilder = new ProcessBuilder(pythonExecutable, scriptFile.getAbsolutePath());
         processBuilder.redirectErrorStream(true);
         Process process = processBuilder.start();
 
@@ -119,6 +145,10 @@ public class PythonScriptExecutor {
         }
 
         int exitCode = process.waitFor();
+        if(Logger.isLoggingEnabled()){
+            Logger.log(Level.INFO,"Execution is Completed......");
+        }
+
         if (exitCode != 0) {
             String errorMessage = "Failed with exit code " + exitCode + ". Output: " + output.toString();
             if (errorOutput.length() > 0) {
@@ -131,6 +161,9 @@ public class PythonScriptExecutor {
     }
 
     private File validateFilePath(String scriptPath) throws FileNotFoundException {
+        if (Logger.isLoggingEnabled() && Logger.getLogLevel()==Level.SEVERE) {
+            Logger.log(Level.SEVERE,"Validating File Path.....");
+        }
 
         if(!scriptPath.endsWith(".py")){
             throw new IncorrectFileExtensionException("Path is not a valid path for python file, include python(.py) file in the path in case you missed to add: " + scriptPath);
@@ -139,6 +172,10 @@ public class PythonScriptExecutor {
         File scriptFile = new File(scriptPath);
         if (!scriptFile.exists()) {
             throw new FileNotFoundException("Python script not found at path: " + scriptPath);
+        }
+
+        if (Logger.isLoggingEnabled() && Logger.getLogLevel()==Level.SEVERE) {
+            Logger.log(Level.SEVERE,"Validating File Path Complete.....");
         }
 
         return scriptFile;
@@ -150,10 +187,19 @@ public class PythonScriptExecutor {
      * @return the name of the Python executable
      */
     private static String getPythonExecutable() {
+        if (Logger.isLoggingEnabled() && Logger.getLogLevel()==Level.SEVERE) {
+            Logger.log(Level.SEVERE,"Fetching OS type.....");
+        }
         String os = System.getProperty("os.name").toLowerCase();
         if (os.contains("win")) {
+            if (Logger.isLoggingEnabled() && Logger.getLogLevel()==Level.SEVERE) {
+                Logger.log(Level.SEVERE,"OS type is Windows.....will be using python");
+            }
             return "python";
         } else {
+            if (Logger.isLoggingEnabled() && Logger.getLogLevel()==Level.SEVERE) {
+                Logger.log(Level.SEVERE,"Other OS type.....will be using python3");
+            }
             return "python3";
         }
     }
@@ -167,10 +213,19 @@ public class PythonScriptExecutor {
      * @return the command to execute the Python script
      */
     private static List<String> buildCommand(String pythonExecutable, String scriptPath, String... arguments) {
+        if(Logger.isLoggingEnabled() && Logger.getLogLevel()==Level.SEVERE){
+            Logger.log(Level.SEVERE,"Building Command......");
+        }
+
         List<String> command = new ArrayList<>();
         command.add(pythonExecutable);
         command.add(scriptPath);
         command.addAll(Arrays.asList(arguments));
+
+        if(Logger.isLoggingEnabled() && Logger.getLogLevel()==Level.SEVERE){
+            Logger.log(Level.SEVERE,"Building Command Completed......");
+        }
+
         return command;
     }
 }
