@@ -7,6 +7,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 
 public class PythonScriptExecutor {
@@ -32,6 +34,39 @@ public class PythonScriptExecutor {
         }
         return output;
     }
+    public String executePythonScriptNoArgsASync(String scriptPath, boolean loggingState, Level loggLevel) {
+
+        Logger.setLoggingEnabled(loggingState);
+        Logger.setLogLevel(loggLevel);
+
+        if(Logger.isLoggingEnabled()){
+            Logger.log(Level.INFO,"ASync Execution......");
+        }
+
+        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> executePythonScriptNoArgsSync(scriptPath, loggingState, loggLevel));
+
+        while (!completableFuture.isDone()) {
+            if(Logger.isLoggingEnabled()){
+                Logger.log(Level.INFO,"ASync Execution is not finished yet......");
+            }
+        }
+
+        String result = null;
+        try{
+            result = completableFuture.get();
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        if(result==null){
+            return "Some Issue Was Encountered, please investigate.";
+        }
+        return result;
+    }
+
+
     public String executePythonScriptWithArgsSync(String scriptPath, boolean loggingState, Level loggLevel,String... arguments) {
         Logger.setLoggingEnabled(loggingState);
         Logger.setLogLevel(loggLevel);
@@ -51,6 +86,44 @@ public class PythonScriptExecutor {
             return "Some Issue Was Encountered, please investigate.";
         }
         return output;
+    }
+
+    public String executePythonScriptWithArgsASync(String scriptPath, boolean loggingState, Level loggLevel, String... arguments) {
+
+        Logger.setLoggingEnabled(loggingState);
+        Logger.setLogLevel(loggLevel);
+
+        if(Logger.isLoggingEnabled()){
+            Logger.log(Level.INFO,"ASync Execution......");
+        }
+
+        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> executePythonScriptWithArgsSync(scriptPath, loggingState, loggLevel, arguments));
+
+        while (!completableFuture.isDone()) {
+            if(Logger.isLoggingEnabled()){
+                Logger.log(Level.INFO,"ASync Execution is not finished yet......");
+            }
+            try {
+                // Sleep for 4 seconds
+                Thread.sleep(4000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        String result = null;
+        try{
+            result = completableFuture.get();
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        if(result==null){
+            return "Some Issue Was Encountered, please investigate.";
+        }
+        return result;
     }
 
     private String executeCoreLogicWithArgs(String scriptPath, String... arguments) throws IOException, InterruptedException {

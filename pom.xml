@@ -9,8 +9,8 @@
     <version>1.0.0</version>
 
     <name>PythonScriptExecutor</name>
-    <description>An application to run python scripts and gather results/output of scripts inside of your java code.</description>
-    <url>http://www.example.com/example-application</url>
+    <description>This Java library allows you to run Python scripts from within Java code and gather their results for use in your Java applications. It provides both synchronous and asynchronous methods to execute the scripts, with support for logging and custom exceptions.</description>
+    <url>https://central.sonatype.com/artifact/io.github.shubham10divakar/pythonscriptexecutor</url>
 
     <licenses>
         <license>
