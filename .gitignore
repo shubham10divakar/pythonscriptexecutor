@@ -4,6 +4,9 @@ __pycache__/
 *.pyc
 *.cpython-39.pyc
 
+#target
+target/
+
 #Test.java
 src/main/java/io/github/shubham10divakar/Test.java
 #Test.class

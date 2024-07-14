@@ -1,4 +1,4 @@
-package io.github.shubham10divakar.Logger;
+package io.github.shubham10divakar.internal.Logger;
 
 import java.util.logging.Level;
 

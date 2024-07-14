@@ -1,4 +1,4 @@
-package io.github.shubham10divakar.CustomException;
+package io.github.shubham10divakar.internal.CustomException;
 
 public class IncorrectFileExtensionException extends RuntimeException{
     public IncorrectFileExtensionException(String errorMessage, Throwable err) {

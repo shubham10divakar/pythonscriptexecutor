@@ -1,7 +1,7 @@
 package io.github.shubham10divakar;
 
-import io.github.shubham10divakar.CustomException.IncorrectFileExtensionException;
-import io.github.shubham10divakar.Logger.Logger;
+import io.github.shubham10divakar.internal.CustomException.IncorrectFileExtensionException;
+import io.github.shubham10divakar.internal.Logger.Logger;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.logging.Level;
 
 public class PythonScriptExecutor {
 
-    public String executePythonScriptNoArgs(String scriptPath, boolean loggingState, Level loggLevel) {
+    public String executePythonScriptNoArgsSync(String scriptPath, boolean loggingState, Level loggLevel) {
 
         Logger.setLoggingEnabled(loggingState);
         Logger.setLogLevel(loggLevel);
@@ -32,17 +32,7 @@ public class PythonScriptExecutor {
         }
         return output;
     }
-
-    /**
-     * Executes a Python script with the specified arguments.
-     *
-     * @param scriptPath the path to the Python script
-     * @param arguments  the arguments to pass to the Python script
-     * @return the output of the script execution
-     * @throws IOException          if an I/O error occurs
-     * @throws InterruptedException if the process is interrupted
-     */
-    public String executePythonScriptWithArgs(String scriptPath, boolean loggingState, Level loggLevel,String... arguments) {
+    public String executePythonScriptWithArgsSync(String scriptPath, boolean loggingState, Level loggLevel,String... arguments) {
         Logger.setLoggingEnabled(loggingState);
         Logger.setLogLevel(loggLevel);
 
@@ -181,11 +171,7 @@ public class PythonScriptExecutor {
         return scriptFile;
     }
 
-    /**
-     * Determines the Python executable based on the operating system.
-     *
-     * @return the name of the Python executable
-     */
+
     private static String getPythonExecutable() {
         if (Logger.isLoggingEnabled() && Logger.getLogLevel()==Level.SEVERE) {
             Logger.log(Level.SEVERE,"Fetching OS type.....");
@@ -204,14 +190,7 @@ public class PythonScriptExecutor {
         }
     }
 
-    /**
-     * Builds the command to execute the Python script with arguments.
-     *
-     * @param pythonExecutable the Python executable
-     * @param scriptPath       the path to the Python script
-     * @param arguments        the arguments to pass to the Python script
-     * @return the command to execute the Python script
-     */
+
     private static List<String> buildCommand(String pythonExecutable, String scriptPath, String... arguments) {
         if(Logger.isLoggingEnabled() && Logger.getLogLevel()==Level.SEVERE){
             Logger.log(Level.SEVERE,"Building Command......");

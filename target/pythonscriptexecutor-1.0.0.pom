@@ -9,7 +9,7 @@
     <version>1.0.0</version>
 
     <name>PythonScriptExecutor</name>
-    <description>An application to run python scripts and gather results/output of scripts in java code.</description>
+    <description>An application to run python scripts and gather results/output of scripts inside of your java code.</description>
     <url>http://www.example.com/example-application</url>
 
     <licenses>
@@ -27,9 +27,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/56duong/calculator.git</connection>
-        <developerConnection>scm:git:ssh://github.com:56duong/calculator.git</developerConnection>
-        <url>http://github.com/56duong/calculator/tree/master</url>
+        <connection>scm:git:git://github.com/shubham10divakar/pythonscriptexecutor.git</connection>
+        <developerConnection>scm:git:ssh://shubham10divakar/pythonscriptexecutor.git</developerConnection>
+        <url>http://github.com/shubham10divakar/pythonscriptexecutor/tree/main</url>
     </scm>
 
     <properties>
