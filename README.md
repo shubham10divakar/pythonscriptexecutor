@@ -23,6 +23,19 @@ Add the following dependency to your `pom.xml` if you are using Maven:
 ```
 
 ## Usage
+
+# Note
+Ensure your Python scripts (script.py in this case) have a __main__ section defined as shown in the example below. This ensures compatibility and proper execution when using the PythonScriptExecutor library in your Java code else it wont run.
+```code
+# Example Python script: script.py
+def main():
+    # Your script logic here
+    print("Hello from Python!")
+
+if __name__ == "__main__":
+    main()
+```
+
 ## Synchronous Execution without Arguments
 ```code
 import io.github.shubham10divakar.PythonScriptExecutor;

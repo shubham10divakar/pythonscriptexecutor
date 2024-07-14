@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"io.github.shubham10divakar"},{"l":"io.github.shubham10divakar.CustomException"},{"l":"io.github.shubham10divakar.Logger"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"io.github.shubham10divakar"},{"l":"io.github.shubham10divakar.internal.CustomException"},{"l":"io.github.shubham10divakar.internal.Logger"}];updateSearchResults();
