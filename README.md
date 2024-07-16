@@ -59,14 +59,9 @@ import java.util.logging.Level;
 public class Main {
     public static void main(String[] args) {
         PythonScriptExecutor executor = new PythonScriptExecutor();
-        CompletableFuture<String> future = executor.executePythonScriptNoArgsAsync("path/to/script.py", true, Level.INFO);
-        
-        future.thenAccept(output -> {
-            System.out.println("Script output: " + output);
-        }).exceptionally(ex -> {
-            System.err.println("Script execution failed: " + ex.getMessage());
-            return null;
-        });
+        String output = executor.executePythonScriptNoArgsASync("path/to/script.py", true, Level.INFO);
+        System.out.println(output);
+
     }
 }
 ```
